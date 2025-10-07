@@ -5,12 +5,13 @@ var _grid_length:int = 16
 var _grid_height:int = 9
 
 var _path: Array[Vector2i]
+var _tower_tile: Array[Vector2i]
 
 func _init(length:int, height:int):
 	_grid_length = length
 	_grid_height = height
 	
-func generate_path(add_loops:bool = false):
+func generate_path():
 	_path.clear()
 	
 	var x = 0
@@ -35,6 +36,28 @@ func generate_path(add_loops:bool = false):
 			
 	return _path
 	
+func generate_tower_tile():
+	_tower_tile.clear()
+
+	var max_distance = 2
+	
+	for path_tile in _path:
+		for dx in range(-max_distance, max_distance + 1):
+			for dy in range(-max_distance, max_distance + 1):
+				var tower_pos = path_tile + Vector2i(dx, dy)
+				
+				if _path.has(tower_pos):
+					continue
+				if tower_pos.x < 0 or tower_pos.x >= _grid_length:
+					continue
+				if tower_pos.y < 0 or tower_pos.y >= _grid_height:
+					continue
+				
+				if not _tower_tile.has(tower_pos):
+					_tower_tile.append(tower_pos)
+	
+	return _tower_tile
+	
 func get_tile_score(tile:Vector2i) -> int:
 	var score:int = 0
 	var x = tile.x
@@ -49,4 +72,7 @@ func get_tile_score(tile:Vector2i) -> int:
 
 func get_path() -> Array[Vector2i]:
 	return _path
+	
+func get_tower_tile() -> Array[Vector2i]:
+	return _tower_tile
 	
