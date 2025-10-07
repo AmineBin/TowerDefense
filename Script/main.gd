@@ -11,8 +11,6 @@ extends Node
 
 @export var min_path_size:int
 @export var max_path_size:int
-@export var min_loops:int
-@export var max_loops:int
 
 var _pg:PathGenerator
 

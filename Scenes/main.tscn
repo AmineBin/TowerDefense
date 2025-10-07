@@ -15,13 +15,13 @@ tile_start = ExtResource("3_kry3j")
 tile_end = ExtResource("4_21xkr")
 tile_empty = ExtResource("2_bo1nx")
 tower_tile = ExtResource("6_6bp64")
-min_path_size = 30
-max_path_size = 50
-min_loops = 2
-max_loops = 2
+map_length = 25
+map_height = 8
+min_path_size = 10
+max_path_size = 100
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 8, 10, 16)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 19.486355, 24.295591, 30.41885)
 fov = 60.0
 script = ExtResource("6_21xkr")
 
