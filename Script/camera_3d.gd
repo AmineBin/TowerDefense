@@ -1,6 +1,6 @@
 extends Camera3D
 
-@export var map_length:int = 25
+@export var map_length:int = 16
 @export var map_height:int = 8
 
 func _ready() -> void:

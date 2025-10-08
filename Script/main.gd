@@ -59,3 +59,11 @@ func _display_path():
 		add_child(tile)
 		tile.global_position = Vector3(element.x , 0, element.y)
 	
+@onready var enemy_scene = preload("res://scenes/Enemy.tscn")
+
+func _spawn_enemy():
+	var enemy_instance = enemy_scene.instantiate()
+	add_child(enemy_instance)
+	print('Enemy spawned')
+	
+	enemy_instance.path = _pg.get_path()

@@ -1,7 +1,7 @@
 extends Object
 class_name PathGenerator
 
-var _grid_length:int = 25
+var _grid_length:int = 16
 var _grid_height:int = 8
 
 var _path: Array[Vector2i]
