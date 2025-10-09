@@ -1,12 +1,16 @@
 extends Node3D
 
+# Enemy spawning settings
 @export var enemy_scene: PackedScene
 @export var path_node: Path3D
+@export var path_highlight: MeshInstance3D
 @export var spawn_interval: float = 2.0
 @export var enemies_per_wave: int = 10
 @export var wave_delay: float = 5.0
+@export var show_path_before_wave: bool = true
 @export var auto_start: bool = true
 
+# Current wave info
 var current_wave: int = 0
 var enemies_spawned_this_wave: int = 0
 var is_spawning: bool = false
@@ -47,7 +51,6 @@ func start_next_wave():
 	print("Wave ", current_wave, " started!")
 
 func spawn_enemy():
-	
 	if enemy_scene == null:
 		push_error("Enemy scene not assigned to spawner!")
 		return
@@ -60,6 +63,10 @@ func spawn_enemy():
 	
 	path_node.add_child(enemy_instance)
 	
+	print("Enemy added to path, child count: ", path_node.get_child_count())
+	
+	enemy_instance.progress = 0
+	
 	if enemy_instance.has_signal("enemy_reached_end"):
 		enemy_instance.connect("enemy_reached_end", _on_enemy_reached_end)
 	if enemy_instance.has_signal("enemy_died"):
@@ -67,6 +74,7 @@ func spawn_enemy():
 	
 	enemies_spawned_this_wave += 1
 	
+	# Check if wave is complete
 	if enemies_spawned_this_wave >= enemies_per_wave:
 		complete_wave()
 
@@ -74,6 +82,7 @@ func complete_wave():
 	emit_signal("wave_completed", current_wave)
 	print("Wave ", current_wave, " spawning complete!")
 	
+	# Wait before starting next wave
 	is_spawning = false
 	await get_tree().create_timer(wave_delay).timeout
 	

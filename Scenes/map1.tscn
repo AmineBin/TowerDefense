@@ -12,7 +12,7 @@
 
 [sub_resource type="Curve3D" id="Curve3D_si05j"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.012732029, -4.374981e-05, 0.1023674, 0, 0, 0, 0, 0, 0, -0.91453743, -4.36306e-05, 0.021231174, 0, 0, 0, 0, 0, 0, -2.0113068, -4.374981e-05, -1.0361514, 0, 0, 0, 0, 0, 0, -3.0226417, -4.374981e-05, -1.0153706, 0, 0, 0, 0, 0, 0, -3.9924145, -4.374981e-05, -1.0222974, 0, 0, 0, 0, 0, 0, -4.013195, -4.374981e-05, 0.030598879, 0, 0, 0, 0, 0, 0, -4.989895, -4.374981e-05, 0.009818077, 0, 0, 0, 0, 0, 0, -5.9804482, -4.374981e-05, 0.016744852, 0, 0, 0, 0, 0, 0, -5.9804482, -4.374981e-05, -1.0015166, 0, 0, 0, 0, 0, 0, -6.9710026, -4.374981e-05, -0.9738085),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, -1, 0, 0, 0, 0, 0, 0, -3, 0, -1, 0, 0, 0, 0, 0, 0, -4, 0, -1, 0, 0, 0, 0, 0, 0, -4, 0, 0, 0, 0, 0, 0, 0, 0, -5, 0, 0, 0, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, 0, 0, -6, 0, -1, 0, 0, 0, 0, 0, 0, -7, 0, -1),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 10
@@ -20,6 +20,7 @@ point_count = 10
 [node name="Node3D" type="Node3D"]
 
 [node name="GridMap" type="GridMap" parent="."]
+cell_size = Vector3(1, 0.5, 1)
 
 [node name="Tile" parent="GridMap" instance=ExtResource("1_wouuh")]
 
@@ -169,6 +170,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.3140753, 0.9493981, 0, -0.9493981, 0.3140753, 3.7774954, 5.512, 3.5)
+current = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.7510424, 7.606289, 1.0152483)
@@ -177,8 +179,9 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.75
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.2058543, 2)
 curve = SubResource("Curve3D_si05j")
 
-[node name="Enemy_spawn" parent="Path3D" node_paths=PackedStringArray("path_node") instance=ExtResource("7_kif58")]
+[node name="Enemy_spawn" parent="Path3D" node_paths=PackedStringArray("path_node", "path_highlight") instance=ExtResource("7_kif58")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.2058543, 0)
 script = ExtResource("9_jemul")
 enemy_scene = ExtResource("9_si05j")
 path_node = NodePath("..")
+path_highlight = NodePath("")

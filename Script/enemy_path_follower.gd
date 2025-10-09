@@ -10,23 +10,18 @@ signal enemy_reached_end(damage)
 signal enemy_died
 
 func _ready():
-	# Start at the beginning of the path
 	progress = 0
 	
-	# Make sure we're updating position based on the path
 	loop = false
 	rotation_mode = PathFollow3D.ROTATION_NONE
 
 func _process(delta):
-	# Move along the path
 	progress += speed * delta
 
-	# Check if enemy reached the end
 	if progress_ratio >= 1.0:
 		reach_end()
 
 func reach_end():
-	# Enemy reached the end, deal damage to player base
 	emit_signal("enemy_reached_end", damage_to_base)
 	queue_free()
 
